@@ -1,0 +1,33 @@
+html
+  head
+    title= title
+    
+  body
+    include ../partials/header
+  
+  form(method='POST' name='') 
+    p 
+      strong Add an Actor: 
+      input(type='text', placeholder='First and Last', name='actorName')
+      br
+      button(type='submit') Add Actor
+    
+  form(method='POST' action='/contribute') 
+    p
+      strong Add a Movie:
+      br
+      input(type='text', placeholder='Title', name='name') 
+      br
+      input(type='text', placeholder='Release Year (xxxx)', name='year') 
+      br
+      input(type='text', placeholder='Runtime (hh:mm:ss)', name='runtime') 
+      br
+      input(type='text', placeholder='Writers (separate by \',\')', name='writers') 
+      br
+      input(type='text', placeholder='Directors (separate by \',\')', name='directors') 
+      br
+      input(type='text', placeholder='Actors (separate by \',\')', name='actors') 
+      br
+      input(type='text', placeholder='Genre', name='genre') 
+      br
+      button(type='submit') Add Movie

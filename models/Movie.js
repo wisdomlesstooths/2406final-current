@@ -44,4 +44,4 @@ let movieSchema = new Schema({
     }
   });
 
-  mongoose.model('Movie', movieSchema);
+mongoose.model('Movie', movieSchema);

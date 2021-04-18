@@ -1,0 +1,37 @@
+html
+  head
+    title= title
+  body
+    include ../partials/header
+
+    //follow the user whose page you're on 
+    p 
+      if contributing == 1
+        strong Username: #{username} (contributing user)
+      else 
+        strong Username: #{username} (regular user)
+       
+    form(method='get' action='')
+      button(type='submit') Follow
+    br
+    br
+
+    //follow ppl under People {someUser} follows
+    for person in follows
+      //unfollow button; change method
+      form(method='get' action='')
+        button(type='submit') Follow
+        a(href='/people/'+ 'you' style='padding-left:10px') #{person}
+        br
+    
+    p 
+      strong Movies #{username} Has Watched: 
+      for wM in watched
+        br
+        a(href='/movies/'+ 'The Ballad of Cable Hogue') #{wM}
+        
+    p 
+      strong Reviews Written by #{username}: 
+      for rev in reviews
+        br
+        a(href='/movies/'+ 'The Ballad of Cable Hogue') #{rev}

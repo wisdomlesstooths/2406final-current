@@ -1,0 +1,41 @@
+html
+  head
+    title=title
+    
+  body
+    include ../partials/header
+
+    p 
+      strong Name: #{name} 
+      form(method='get' action='')
+        button(type='submit') Unfollow
+        a(href='/users/:'+ 'you' style='padding-left:10px') #{user}
+        br
+
+    p 
+      strong Frequent Collaborators:
+      br
+      for people in collaborators
+        a(href='/people/:'+ 'example person') #{people}
+        br
+
+    p 
+      strong Work History:
+    
+    p Writer:
+      br
+      for movie in writer
+        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
+        br
+
+    p Director:
+      br
+      for movie in director
+        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
+        br
+
+    p Actor:
+      br
+      for movie in actor
+        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
+        br

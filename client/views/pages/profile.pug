@@ -1,0 +1,65 @@
+html
+  head
+    title=title
+    
+  body
+    include ../partials/header
+    
+    p 
+      strong Username: #{user.username}
+
+    p 
+      strong Account Type:
+      
+    //might have to change the initial values mased on whether user is contributing or not
+    //form(method='POST' action='/')
+    p 
+      input(type='radio', name='contributing', value='1', checked=contributing==false)
+      |  Regular
+      
+    p
+      input(type='radio', name='contributing', value='0', checked=contributing==true)
+      |  Contributing 
+    
+    button(type='submit') Save
+
+    p(style='padding-top:30px') 
+      strong People You Follow:
+    for person in user.peopleFollows
+      //unfollow button; change method
+      form(method='get' action='')
+        button(type='submit') Unfollow
+        a(href='/people/:'+ 'you' style='padding-left:10px') #{user.person}
+        br
+
+    p(style='padding-top:30px')   
+      strong Users You Follow:
+    for user in user.userFollows
+      //unfollow button; change method
+      form(method='get' action='')
+        button(type='submit') Unfollow
+        a(href='/users/:'+ 'you' style='padding-left:10px') #{user}
+        br
+
+    p(style='padding-top:30px') 
+      strong Movies You've Watched:
+    for wM in user.watched
+      a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{wM.title}
+      br
+
+    p(style='padding-top:30px') 
+      strong Recommended Movies:
+    for rM in user.recc
+      a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{rM.title}
+      br
+
+    p(style='padding-top:30px')  
+      strong Notifications:
+    //while, iterates through notifs, displays delete + view buttons
+    for currNotif in user.notifs
+      button(type='delNotif' style='margin-right:5px; margin-bottom:5px') Delete 
+      button(type='viewNotif') View
+      a(style='padding-left:5px') #{currNotif}
+      br
+   
+         

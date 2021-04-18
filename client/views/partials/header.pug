@@ -1,0 +1,17 @@
+div#header
+	a(href='/' style='margin-right:5px') Home
+	| 
+	a(href='/profile' style='margin-right:5px') Profile
+	| 
+	if loggedIn
+		a(href='/logout' style='margin-right:5px') Logout
+		| 
+	else
+		a(href='/login' style='margin-right:5px') Sign In
+		| 
+		a(href='/createUser' style='margin-right:5px') Sign Up
+		| 
+	a(href='/search' style='margin-right:5px') Search
+	| 
+	a(href='/contribute' style='margin-right:5px') Contribute
+	| 

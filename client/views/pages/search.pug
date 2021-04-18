@@ -1,0 +1,20 @@
+html
+  style 
+  head
+    title=title
+  body
+    include ../partials/header
+
+    form(method='POST' action='/searchResults')
+      p 
+        | Title: 
+        input(type='text' name='name' value='')
+        br
+        | Genre: 
+        input(type='text' name='genre' value='')
+        br
+        | Actor:
+        input(type='text' name='actor' value='')
+        br
+      button(type='submit' value='Submit') Submit
+      

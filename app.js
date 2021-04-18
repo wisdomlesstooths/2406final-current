@@ -1,14 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser').json();
-//const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/test';
 
-
 const app = express();
 
+app.set('views', __dirname + '/client/views');
+app.set('view engine', 'pug');
+
 // Middleware
-app.use(bodyParser);
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 // Route Stuff // 
 const client_routes = require('./client/routes/index');

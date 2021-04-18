@@ -1,0 +1,14 @@
+html
+  head
+    title= title
+  body
+    include ../partials/header
+
+    ul
+      li Title: #{name}
+      li Genre: #{genre}
+      li Actor: #{actor}
+    strong Results:
+    for movie in results
+      br
+      a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}

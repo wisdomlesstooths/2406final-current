@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../../models/User');
 
 // GET /api/users/
 router.get('/', async (req, res) => {
@@ -22,9 +22,6 @@ router.get('/:name', async (req, res) => {
 // router.post('/', (req, res) => {
 //     let username = req.body.username;
 //     let password = req.body.password;
-
-//     res
-
 //     res.send(`Created user with username: ${username} and password: ${password}`);
 // })
 
