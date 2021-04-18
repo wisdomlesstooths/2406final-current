@@ -8,7 +8,7 @@ const Movie = require(".MovieModel");
 // GET /api/users/
 // need to set a limit of how many users are sent
 router.get('/', async (req, res) => {
-    let users = await User.find({}).limit(10);
+    let users = await User.find({}).limit(10).orFail(new Error('error!');
     res.send(users);
 })
 
@@ -16,9 +16,7 @@ router.get('/', async (req, res) => {
 router.get('/:name', async (req, res) => {
     let username = req.params.name;
     // res.send(`Get User Profile of ${username}`);
-    let user = await User.find({ name: username }).then(res => {
-      console.log(res.removedCount);
-    }).orFail(() => new Error('Not Found'));
+    let user = await User.find({ name: username }).then(res => {  console.log(res.removedCount);  }).orFail(() => new Error('Not Found'));
 })
 
 
@@ -31,27 +29,16 @@ router.get('/:name', async (req, res) => {
 // })
 
 // PUT /api/user/:username
-router.put('/:username', (req, res) => {
+router.put('/:username', async (req, res) => {
     let username = req.params.username;
     let password = req.body.password;
 
-    User.findOneAndUpdate({ name: username }, {$set: {name: username, password: password}}, (err, user) => {
-        if (err) {
-            res.status(400).send('Error');
-        } else if (user) {
-            user.username = username;
-            user.password = password;
-            user.save((err) => {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.send('saved');
-                }
-            })
-        }
-    })
+    await User.findOneAndUpdate({ name: username }, {$set: {name: username, password: password}}).exec().then(u => {
+      res.render('/user', {
+        user: u
+      });
+    }).orFail(new Error('error!');
 })
-
 // DELETE /api/user/:username
 router.delete('/:username', async (req, res) => {
     let username = req.params.username;
@@ -63,12 +50,12 @@ router.delete('/:username', async (req, res) => {
         await Movie.findByIdAndUpdate(movie, {$pull {reviews: review.id}, callback}.then(res => {
           console.log(res.modifiedCount);
         }).orFail();
-        await review.remove(callback).then(res => {
+        await review.remove().then(res => {
           console.log(res.removedCount);
         }).catch(e => {res.send('error')});
         //can also do .orFail(new Error('No docs found!'))
         //or sinplt .orFail();
-      await u.remove(callback).then(res =>{
+      await u.remove().then(res =>{
         res.send('user removed')
       }).catch(e => {res.send('error')});
     }
