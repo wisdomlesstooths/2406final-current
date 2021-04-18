@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let userSchema = Schema({
+let userSchema = new Schema({
 	name: {
 		type: String,
 		required: true,
-		//minlength: 1,
-		//maxlength: 30,
+		minlength: 1,
+		maxlength: 30,
 		match: /[A-Za-z0-9]+/,
 		trim: true
 	},
@@ -16,33 +16,36 @@ let userSchema = Schema({
 	},
 	roles: {
 		type: [],
-		required: true,
+		//required: true,
 	},
 	loggedIn: {
 		type: Boolean,
+		required: true
 	},
 	contributing: {
 		type: Boolean,
+		required: true
 	},
 	recommendedMovies: {
 		type: [String],
-
+		//required: true
 	},
 	watchedMovies: {
 		type: [String],
-
+		//required: true
 	},
 	usersFollowing: {
 		type: [String],
-
+		//required: true
 	},
 	peopleFollowing: {
 		type: [String],
-
+		//required: true
 	},
 	reviews:  {
-		type: [String]
+		type: [String],
+		//required: true
 	},
 });
 
-mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema, 'user');

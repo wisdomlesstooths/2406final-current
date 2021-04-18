@@ -35,10 +35,4 @@ router.delete('/:username', (req, res) => {
     res.send(`Deleted ${username}`);
 })
 
-// GET /api/users/:uid
-// router.get('/:uid', (req, res) => {
-//     const username = req.params.uid;
-//     res.send(`Get User Profile of ${uid}`);
-// })
-
 module.exports = router;

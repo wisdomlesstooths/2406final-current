@@ -1,0 +1,50 @@
+[
+    {
+        "username": "user1",
+        "password": "password1",
+        "roles": [],
+        "loggedIn": false,
+        "contributing": false,
+        "recommendedMovies": [],
+        "watchedMovies": [],
+        "usersFollowing": [],
+        "peopleFollowing": [],
+        "reviews": []
+    },
+    {
+        "username": "user2",
+        "password": "password2",
+        "roles": [],
+        "loggedIn": false,
+        "contributing": false,
+        "recommendedMovies": [],
+        "watchedMovies": [],
+        "usersFollowing": [],
+        "peopleFollowing": [],
+        "reviews": []
+    },
+    {
+        "username": "user3",
+        "password": "password3",
+        "roles": [],
+        "loggedIn": false,
+        "contributing": false,
+        "recommendedMovies": [],
+        "watchedMovies": [],
+        "usersFollowing": [],
+        "peopleFollowing": [],
+        "reviews": []
+    },
+    {
+        "username": "user4",
+        "password": "password4",
+        "roles": [],
+        "loggedIn": false,
+        "contributing": false,
+        "recommendedMovies": [],
+        "watchedMovies": [],
+        "usersFollowing": [],
+        "peopleFollowing": [],
+        "reviews": []
+    }
+]

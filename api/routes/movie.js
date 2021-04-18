@@ -32,3 +32,5 @@ router.delete('/:title', (req, res) => {
 
     res.send(`Deleted ${title}`);
 })
+
+module.exports = router;
