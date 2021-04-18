@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+const Review = require("./ReviewModel");
+const Movie = require(".MovieModel");
+
 
 // GET /api/users/
+// need to set a limit of how many users are sent
 router.get('/', async (req, res) => {
-    let users = await User.find({});
+    let users = await User.find({}).limit(10);
     res.send(users);
 })
 
@@ -12,8 +16,9 @@ router.get('/', async (req, res) => {
 router.get('/:name', async (req, res) => {
     let username = req.params.name;
     // res.send(`Get User Profile of ${username}`);
-    let user = await User.find({ name: username });
-    res.send(user);
+    let user = await User.find({ name: username }).then(res => {
+      console.log(res.removedCount);
+    }).orFail(() => new Error('Not Found'));
 })
 
 
@@ -30,7 +35,7 @@ router.put('/:username', (req, res) => {
     let username = req.params.username;
     let password = req.body.password;
 
-    User.findOne({ name: username }, (err, user) => {
+    User.findOneAndUpdate({ name: username }, {$set: {name: username, password: password}}, (err, user) => {
         if (err) {
             res.status(400).send('Error');
         } else if (user) {
@@ -47,19 +52,26 @@ router.put('/:username', (req, res) => {
     })
 })
 
-// DELETE /api/user/:username 
-router.delete('/:username', (req, res) => {
+// DELETE /api/user/:username
+router.delete('/:username', async (req, res) => {
     let username = req.params.username;
-
-    User.deleteOne({ name: username }, (err, user) => {
-        if (err) throw err;
-        if (user.deletedCount != 0) {
-            console.log(user);
-            res.send(`Deleted ${username}`);
-        } else {
-            res.send(`No user found with usename ${username}`);
-        }
-    })
+    let u = User.findOne({name: username}, callback);
+    if (u){
+      for ele in u.reviews
+        let review = Review.findById(ele, callback);
+        let movie = review.movie;
+        await Movie.findByIdAndUpdate(movie, {$pull {reviews: review.id}, callback}.then(res => {
+          console.log(res.modifiedCount);
+        }).orFail();
+        await review.remove(callback).then(res => {
+          console.log(res.removedCount);
+        }).catch(e => {res.send('error')});
+        //can also do .orFail(new Error('No docs found!'))
+        //or sinplt .orFail();
+      await u.remove(callback).then(res =>{
+        res.send('user removed')
+      }).catch(e => {res.send('error')});
+    }
 })
 
 module.exports = router;
