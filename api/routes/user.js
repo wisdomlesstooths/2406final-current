@@ -32,7 +32,7 @@ router.put('/:username', (req, res) => {
 router.delete('/:username', (req, res) => {
     let username = req.params.username;
 
-    res.send(`Deleted ${username}`)
+    res.send(`Deleted ${username}`);
 })
 
 // GET /api/users/:uid
