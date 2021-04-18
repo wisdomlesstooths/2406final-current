@@ -1,0 +1,52 @@
+body {
+  background-color: rgb(30,30,30);
+  margin: 20px;
+  padding: 20px;
+  font-family: 'Tahoma', sans-serif;
+}
+* {
+  box-sizing: border-box;
+
+}
+h1, h3, a, p {
+  color: white;
+  font-family: 'Tahoma', sans-serif;
+
+  margin-left: 50px;
+}
+button {
+  margin: 5px 10px 5px 0px;
+  padding: 5px;
+  border: none;
+  font-family: 'Tahoma', sans-serif;
+  border-radius: 4px;
+}
+input{
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.DIV1{
+  width: 80%;
+  background-color: rgb(16,192,192,0.7);
+  margin: 20px 20px 0px 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.column{
+  width: 80%;
+  margin: 0px 20px 20px 20px;
+  padding: 10px;
+  display: block;
+  font-family: 'Georgia', serif;
+  float: left;
+}
+.column.left{
+  width:30%;
+}
+.column.right{
+  width: 50%;
+  text-align: left;
+}
