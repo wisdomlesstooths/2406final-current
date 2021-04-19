@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const dbURI = 'mongodb://localhost/test';
+const dbURI = 'mongodb+srv://hello:world@cluster0.j2hgm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 const app = express();
 
@@ -9,8 +9,8 @@ app.set('views', __dirname + '/client/views');
 app.set('view engine', 'pug');
 
 // Middleware
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
 
 // Route Stuff // 
 const client_routes = require('./client/routes/index');

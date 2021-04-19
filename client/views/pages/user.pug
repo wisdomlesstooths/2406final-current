@@ -10,15 +10,17 @@ html
 
     //follow the user whose page you're on 
     p 
-      if contributing == 1
-        strong Username: #{username} (contributing user)
+      strong Username: #{user.name}
+      br
+      if user.contributing == 1
+        | (contributing user)
       else 
-        strong Username: #{username} (regular user)
-       
-    form(method='get' action='')
-      button(type='submit') Follow
-    br
-    br
+        | (regular user)
+
+      form(method='get' action='')
+        button(type='submit') Follow
+      br
+      br
 
     //follow ppl under People {someUser} follows
     for person in follows

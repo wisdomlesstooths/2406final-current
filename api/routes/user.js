@@ -7,16 +7,16 @@ const Movie = require("../../models/Movie");
 
 // GET /api/users/
 // need to set a limit of how many users are sent
-router.get('/', async (req, res) => {
-    let users = await User.find({}).limit(10).orFail(new Error('error!'));
-    res.send(users);
+router.get('/', (req, res) => {
+    User.find({}).limit(10).then(r => {res.send(r);}).catch(e => {res.send('error')});
+    //res.send(users);
 })
 
 // GET /api/users/:name
 router.get('/:name', async (req, res) => {
     let username = req.params.name;
     // res.send(`Get User Profile of ${username}`);
-    let user = await User.find({ name: username }).then(res => {  console.log(res.removedCount);  }).orFail(() => new Error('Not Found'));
+    let user = await User.find({ name: username }).then(res => {  console.log(res.removedCount);  }).catch(e => {res.send('error')});;
 })
 
 
@@ -37,7 +37,7 @@ router.put('/:username', async (req, res) => {
       res.render('/user', {
         user: u
       });
-    }).orFail(new Error('error!'));
+    }).catch(e => {res.send('error')});
 })
 // DELETE /api/user/:username
 router.delete('/:username', async (req, res) => {
@@ -49,12 +49,10 @@ router.delete('/:username', async (req, res) => {
         let movie = review.movie;
         await Movie.findByIdAndUpdate(movie, {$pull: {reviews: review.id}}).exec.then(res => {
           console.log(res.modifiedCount);
-        }).orFail();
+        }).catch(e => {res.send('error')});
         await review.remove().then(res => {
           console.log(res.removedCount);
         }).catch(e => {res.send('error')});
-        //can also do .orFail(new Error('No docs found!'))
-        //or sinplt .orFail();
       await u.remove().then(res =>{
         res.send('user removed')
       }).catch(e => {res.send('error')});
