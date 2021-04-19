@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Review = require("./ReviewModel");
+const Review = require("../../models/Review");
 
 // GET /api/users/
 router.get('/', (req, res) => {

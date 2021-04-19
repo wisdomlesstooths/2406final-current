@@ -1,17 +1,20 @@
 html
   head
     title=title
-    
+
+    style
+      include ../../../style.css
+
   body
     include ../partials/header
 
-      h1 Welcome to the Movie Database! 
-      p Click some links above to navigate around to some pages.
+    h1 Welcome to the Movie Database! 
+    p Click some links above to navigate around to some pages.
 
-      p(style='margin-top:30px') Here are some test links: 
-        a(href='/search' style='margin-right:5px') testSearch
-        a(href='/users/someUser' style='margin-right:5px') testUser
-        a(href='/people/somePersonName' style='margin-right:5px') testPerson
-        a(href='/movies/someMovieName' style='margin-right:5px') testMovie 
-        a(href='/reviews/someReviewID' style='margin-right:5px') testReview
-        a(href='/searchResults' style='margin-right:5px') testSearchResults
+    p(style='margin-top:30px') Here are some test links: 
+      a(href='/search' style='margin-right:5px') testSearch
+      a(href='/users/someUser' style='margin-right:5px') testUser
+      a(href='/people/somePersonName' style='margin-right:5px') testPerson
+      a(href='/movies/someMovieName' style='margin-right:5px') testMovie 
+      a(href='/reviews/someReviewID' style='margin-right:5px') testReview
+      a(href='/searchResults' style='margin-right:5px') testSearchResults

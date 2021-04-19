@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
-const Review = require("./ReviewModel");
-const Movie = require(".MovieModel");
+const Review = require("../../models/Review");
+const Movie = require("../../models/Movie");
 
 
 // GET /api/users/
 // need to set a limit of how many users are sent
 router.get('/', async (req, res) => {
-    let users = await User.find({}).limit(10).orFail(new Error('error!');
+    let users = await User.find({}).limit(10).orFail(new Error('error!'));
     res.send(users);
 })
 
@@ -37,17 +37,17 @@ router.put('/:username', async (req, res) => {
       res.render('/user', {
         user: u
       });
-    }).orFail(new Error('error!');
+    }).orFail(new Error('error!'));
 })
 // DELETE /api/user/:username
 router.delete('/:username', async (req, res) => {
     let username = req.params.username;
     let u = User.findOne({name: username}, callback);
     if (u){
-      for ele in u.reviews
-        let review = Review.findById(ele, callback);
+      for (ele in u.reviews)
+        var review = Review.findById(ele, callback);
         let movie = review.movie;
-        await Movie.findByIdAndUpdate(movie, {$pull {reviews: review.id}, callback}.then(res => {
+        await Movie.findByIdAndUpdate(movie, {$pull: {reviews: review.id}}).exec.then(res => {
           console.log(res.modifiedCount);
         }).orFail();
         await review.remove().then(res => {
