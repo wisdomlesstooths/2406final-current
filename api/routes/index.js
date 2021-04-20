@@ -8,7 +8,7 @@ router.post('/createUser', (req, res) => {
 
     let newUser = new User({ name: username, 
                             password: password,
-                            loggedIn: false,
+                            loggedIn: true,
                             contributing: false
                         });
 
@@ -17,6 +17,10 @@ router.post('/createUser', (req, res) => {
              res.send('Error occurred');
              return;
         }
+
+        req.session.loggedIn = true;
+        req.session.user = newUser;
+
         res.send('New User Created');
     })
 })
@@ -35,7 +39,10 @@ router.post('/login', (req, res) => {
             res.status(400).send('Error');
         } else if (user) {
             if (user.password == password) {
-                user.loggedIn = true;
+                
+                req.session.loggedIn = true;
+                req.session.user = user;
+
                 user.save((err) => {
                     if (err) {
                         res.send(err);
@@ -50,4 +57,13 @@ router.post('/login', (req, res) => {
     })
 })
 
+router.get('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.loggedIn = false;
+        req.session.user = null;
+        res.send('You are now logged out');
+    } else {
+        res.send('ERROR 400: You are not logged in.');
+    }
+})
 module.exports = router;

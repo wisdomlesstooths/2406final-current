@@ -15,51 +15,63 @@ html
       br
     p Runtime: #{movie.runtime}
     
-    p Average Rating: #{movie.rating}/10
+    //- let #{scoreSum} = 0
+    //- for score in movie.rating
+    //-   Number(scoreSum) += #{score}
+
+    p Average Rating: #{(movie.rating)}/10  
     p Plot: #{movie.plot}
     p Genre: #{movie.genre}
     
     p
+      
       strong Similar Movies:
-      for similar in movie.similar 
-        br
-        a(href='/movies/someMovie' style='margin-right:5px') #{similar}  
+      if (movie.similar)
+        for similar in movie.similar 
+          br
+          a(href='/api/movie/' + similar, style='margin-right:5px') #{similar}  
     p
+      
       strong Directors:
-      for director in movie.director
-        br
-        a(href='/people/somePerson' style='margin-right:5px') #{director}  
+      if (movie.director)
+        for director in movie.director
+          br
+          a(href='/api/people/'+director, style='margin-right:5px') #{director}  
     p  
       strong Writers:
-      for writer in movie.writer
-        br
-        a(href='/people/somePerson' style='margin-right:5px') #{writer}  
+      if (movie.writer)
+        for writer in movie.writer
+          br
+          a(href='/api/people/'+writer, style='margin-right:5px') #{writer}  
     p  
       strong Actors:
-      for actor in movie.actors
-        br
-        a(href='/people/somePerson' style='margin-right:5px') #{actor}
+      if (movie.actors)
+        for actor in movie.actors
+          br
+          a(href='/api/people/'+actor, style='margin-right:5px') #{actor}
     p
       strong Reviews: 
+      if (movie.reviews)
       for review in movie.reviews
-        br
-        a(href='/reviews/someReview' style='margin-right:5px') #{review}
+          br
+          a(href='/api/reviews/'+review style='margin-right:5px') #{review}
     p
       strong Add a Review: 
-      form(method='POST' action='/movies/someMovie')
-        | Review Score:
-        select(name='dropDown')
-          for rating in score
-             option=rating 
-             //to access in js, req.body.dropDown
-        button(type='submit') Submit Basic Review
+      form(method='POST' action='/api/reviews/'+movie.id)
+        p 
+          | Review Score:
+          select(name='rating')
+            each rating in [1,2,3,4,5,6,7,8,9,10]
+              option=rating 
+              //to access in js, req.body.dropDown
+          button(type='submit') Submit Basic Review
         p
           | Review Summary
           br
-          input(type='text' name='sumText' style='padding:5px')
+          input(type='text' name='summary' style='padding:5px')
         p
           | Full Review Text:
           br
-          input(type='text' name='reviewText' style='padding: 50px 5px')
-        button(type='submit') Submit Full Review
+          input(type='text' name='review' style='padding: 50px 5px')
+          button(type='submit') Submit Full Review
         

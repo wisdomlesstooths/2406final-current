@@ -27,11 +27,11 @@ let userSchema = new Schema({
 		required: true
 	},
 	recommendedMovies: {
-		type: [String],
+		type: [String]
 		//required: true
 	},
 	watchedMovies: {
-		type: [String],
+		type: [String]
 		//required: true
 	},
 	usersFollowing: {
@@ -39,13 +39,16 @@ let userSchema = new Schema({
 		//required: true
 	},
 	peopleFollowing: {
-		type: [String],
+		type: [String]
 		//required: true
 	},
 	reviews:  {
-		type: [String],
+		type: [String]
 		//required: true
 	},
+	notifications:  {
+			type: [String]
+	}
 });
 
-module.exports = mongoose.model('User', userSchema, 'user');
+module.exports = mongoose.model('User', userSchema, 'users');

@@ -7,3 +7,6 @@ html
       
   body
     include ../partials/header
+    
+    for person in people
+      a(href='/api/people/' + person.name) #{person.name}

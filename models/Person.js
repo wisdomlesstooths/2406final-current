@@ -8,15 +8,15 @@ let personSchema = new Schema({
 		match: /[A-Za-z]+/,
 		trim: true
 	},
-    directed: {
-        type: [String]
-    },
-    wrote: {
-        type: [String]
-    },
-    acted: {
-        type: [String]
-    }
+  directed: {
+    type: [String]
+  },
+  wrote: {
+    type: [String]
+  },
+  acted: {
+    type: [String]
+  }
 });
 
-mongoose.model('Person', personSchema);
+module.exports = mongoose.model('Person', personSchema, 'people');

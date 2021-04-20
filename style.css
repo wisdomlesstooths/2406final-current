@@ -20,6 +20,7 @@ button {
   border: none;
   font-family: 'Tahoma', sans-serif;
   border-radius: 4px;
+  margin: 5px;
 }
 input{
   padding: 5px;

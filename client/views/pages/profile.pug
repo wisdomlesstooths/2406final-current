@@ -9,60 +9,69 @@ html
     include ../partials/header
     
     p 
-      strong Username: #{user.username}
-
-    p 
-      strong Account Type:
+      strong Username: #{user.name} 
+      if user.contributing == 1
+        | (contributing user)
+      else 
+        | (regular user)
+      br
+      br
       
     //might have to change the initial values mased on whether user is contributing or not
     //form(method='POST' action='/')
-    p 
-      input(type='radio', name='contributing', value='1', checked=contributing==false)
-      |  Regular
-      
-    p
-      input(type='radio', name='contributing', value='0', checked=contributing==true)
-      |  Contributing 
+    form(method='POST' action='/profile')
+          p 
+            input(type='radio', name='contributing', value='0', checked=contributing==false)
+            |  Regular
+            
+          p
+            input(type='radio', name='contributing', value='1', checked=contributing==true)
+            |  Contributing 
+          
+            button(type='submit') Save
     
-    button(type='submit') Save
+    //button(type='submit') Save
 
     p(style='padding-top:30px') 
       strong People You Follow:
-    for person in user.peopleFollows
+    for person in user.peopleFollowing
       //unfollow button; change method
       form(method='get' action='')
         button(type='submit') Unfollow
-        a(href='/people/:'+ 'you' style='padding-left:10px') #{user.person}
+        a(href='/api/people/'+ person, style='padding-left:10px') #{person}
         br
-
-    p(style='padding-top:30px')   
-      strong Users You Follow:
-    for user in user.userFollows
-      //unfollow button; change method
-      form(method='get' action='')
-        button(type='submit') Unfollow
-        a(href='/users/:'+ 'you' style='padding-left:10px') #{user}
-        br
+    if (user.usersFollowing)
+      p(style='padding-top:30px')   
+        strong Users You Follow:
+      for u in user.usersFollowing
+        //unfollow button; change method
+        form(method='get' action='')
+          button(type='submit') Unfollow
+          a(href='/api/users/'+ u style='padding-left:10px') #{u}
+          br
 
     p(style='padding-top:30px') 
       strong Movies You've Watched:
-    for wM in user.watched
-      a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{wM.title}
-      br
+      if (user.watchedMovies)
+        for watched in user.watchedMovies
+          a(href='/api/movies/'+ watched) #{watched}
+          br
 
     p(style='padding-top:30px') 
       strong Recommended Movies:
-    for rM in user.recc
-      a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{rM.title}
-      br
-
+      if (user.recommendedMovies)
+        for rec in user.recommendedMovies
+          a(href='/api/movies/'+ rec) #{rec}
+          br
+        
+    //GET LAST NOTIF ONLY INSTEAD?
     p(style='padding-top:30px')  
       strong Notifications:
     //while, iterates through notifs, displays delete + view buttons
-    for currNotif in user.notifs
+    for notif in user.notifications
       button(type='delNotif' style='margin-right:5px; margin-bottom:5px') Delete 
       button(type='viewNotif') View
-      a(style='padding-left:5px') #{currNotif}
+      a(style='padding-left:5px') #{notif}
       br
    
-         
+        

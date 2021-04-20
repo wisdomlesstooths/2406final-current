@@ -4,26 +4,26 @@ html
 
     style
       include ../../../style.css
-      
+
   body
     include ../partials/header
   
-  form(method='POST' name='') 
+  form(method='POST' name='' action='/person') 
     p 
-      strong Add an Actor: 
+      strong Add a Person: 
       input(type='text', placeholder='First and Last', name='actorName')
       br
-      button(type='submit') Add Actor
+      button(type='submit') Add Person
     
-  form(method='POST' action='/contribute') 
+  form(method='POST' action='/movie') 
     p
       strong Add a Movie:
       br
-      input(type='text', placeholder='Title', name='name') 
+      input(type='text', placeholder='Title', name='name', required) 
       br
-      input(type='text', placeholder='Release Year (xxxx)', name='year') 
+      input(type='text', placeholder='Release Year (xxxx)', name='year', required) 
       br
-      input(type='text', placeholder='Runtime (hh:mm:ss)', name='runtime') 
+      input(type='text', placeholder='Runtime (hh:mm:ss)', name='runtime', required) 
       br
       input(type='text', placeholder='Writers (separate by \',\')', name='writers') 
       br
@@ -31,6 +31,6 @@ html
       br
       input(type='text', placeholder='Actors (separate by \',\')', name='actors') 
       br
-      input(type='text', placeholder='Genre', name='genre') 
+      input(type='text', placeholder='Genre', name='genre', required) 
       br
       button(type='submit') Add Movie

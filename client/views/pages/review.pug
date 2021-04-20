@@ -11,12 +11,12 @@ html
     p 
       strong Reviewer: #{reviewer}
     p
-      strong Score: #{score}/10
+      strong Score: #{review.rating}/10
     
     p(style='padding-top:30px') 
       strong Summary Text:
-    p #{sumText}
+    p #{review.summary}
 
     p(style='padding-top:30px') 
       strong Full Text:
-    p #{review}
+    p #{review.review}

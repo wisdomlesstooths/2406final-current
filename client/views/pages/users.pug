@@ -4,6 +4,12 @@ html
 
     style
       include ../../../style.css
-      
+
   body
     include ../partials/header
+
+    p
+      strong Users:
+
+    for user in users
+      a(href='/api/users/' + user.name) #{user.name}

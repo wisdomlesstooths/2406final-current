@@ -1,9 +1,9 @@
 div#header
 	a(href='/' style='margin-right:5px') Home
 	| 
-	a(href='/profile' style='margin-right:5px') Profile
-	| 
 	if loggedIn
+		a(href='/profile' style='margin-right:5px') Profile
+		| 
 		a(href='/logout' style='margin-right:5px') Logout
 		| 
 	else

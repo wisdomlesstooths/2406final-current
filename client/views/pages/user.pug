@@ -10,8 +10,7 @@ html
 
     //follow the user whose page you're on 
     p 
-      strong Username: #{user.name}
-      br
+      strong Username: #{user.name} 
       if user.contributing == 1
         | (contributing user)
       else 
@@ -23,21 +22,25 @@ html
       br
 
     //follow ppl under People {someUser} follows
-    for person in follows
-      //unfollow button; change method
-      form(method='get' action='')
-        button(type='submit') Follow
-        a(href='/people/'+ 'you' style='padding-left:10px') #{person}
-        br
+    p
+      if (user.peopleFollowing)
+        for person in user.peopleFollowing
+          //unfollow button; change method
+          form(method='get' action='')
+            button(type='submit') Follow
+            a(href='/api/people/'+ person, style='padding-left:10px') #{person}
+            br
     
     p 
-      strong Movies #{username} Has Watched: 
-      for wM in watched
-        br
-        a(href='/movies/'+ 'The Ballad of Cable Hogue') #{wM}
+      strong Movies #{user.name} Has Watched: 
+      if (user.watchedMovies)
+        for wM in user.watchedMovies
+          br
+          a(href='/api/movies/'+ wM) #{wM}
         
     p 
-      strong Reviews Written by #{username}: 
-      for rev in reviews
-        br
-        a(href='/movies/'+ 'The Ballad of Cable Hogue') #{rev}
+      strong Reviews Written by #{user.name}: 
+      if (user.reviews)
+        for rev in user.reviews
+          br
+          a(href='/api/reviews/'+ rev) #{rev}

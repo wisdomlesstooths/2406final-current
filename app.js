@@ -8,9 +8,13 @@ const app = express();
 app.set('views', __dirname + '/client/views');
 app.set('view engine', 'pug');
 
+// express session stuff for current logged-in user
+const expressSession = require('express-session');
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
+app.use(expressSession({ secret: 'this is my random secret key because security'}));
 
 // Route Stuff // 
 const client_routes = require('./client/routes/index');
@@ -19,6 +23,7 @@ app.use('/', client_routes);
 
 const api_routes = require('./api/routes/index');
 const user_routes = require('./api/routes/user');
+//const users_routes = require('./client/routes/users');
 const movie_routes = require('./api/routes/movie');
 const people_routes = require('./api/routes/people');
 const review_routes = require('./api/routes/reviews');
@@ -30,6 +35,7 @@ app.use('/api/users', user_routes);
 app.use('/api/movies', movie_routes);
 app.use('/api/people', people_routes);
 app.use('/api/reviews', review_routes);
+//app.use('/users', users_routes);
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 

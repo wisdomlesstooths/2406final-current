@@ -7,3 +7,7 @@ html
       
   body
     include ../partials/header
+    ul(style='padding-top:30px')
+      for movie in movies
+        li
+          a(href='/api/movies/' + movie.title) #{movie.title}

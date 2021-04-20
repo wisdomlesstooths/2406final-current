@@ -8,13 +8,13 @@ let reviewSchema = new Schema({
       max: 10,
     },
     summary: {
-      type: String,
+      type: String
     },
     review: {
-      type: String,
+      type: String
     },
     reviewer: { type: Schema.Types.ObjectId, ref: 'User' },
     movie: { type: Schema.Types.ObjectId, ref: 'Movie' },
 });
 
-mongoose.model('Review', reviewSchema);
+module.exports = mongoose.model('Review', reviewSchema, 'reviews');

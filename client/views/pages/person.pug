@@ -9,36 +9,45 @@ html
     include ../partials/header
 
     p 
-      strong Name: #{name} 
+      strong Name: #{person.name} 
       form(method='get' action='')
         button(type='submit') Unfollow
-        a(href='/users/:'+ 'you' style='padding-left:10px') #{user}
+        a(href='/profile' style='padding-left:10px') 
         br
 
     p 
-      strong Frequent Collaborators:
-      br
-      for people in collaborators
-        a(href='/people/:'+ 'example person') #{people}
+      if (person.collaborators)
+        strong Frequent Collaborators:
         br
+        for collab in people.collaborators
+          a(href='/api/people/'+ collab) #{collab}
+          br
 
     p 
       strong Work History:
     
-    p Writer:
-      br
-      for movie in writer
-        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
+    if(person.wrote)
+      p
+        |Wrote:
         br
+        for movie in person.wrote
+          a(href='/api/movies/'+ movie) #{movie}
+          br
 
-    p Director:
-      br
-      for movie in director
-        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
-        br
 
-    p Actor:
-      br
-      for movie in actor
-        a(href='/movies/:'+ 'The Ballad of Cable Hogue') #{movie}
+    if(person.directed)
+      p 
+        |Directed:
         br
+        for movie in person.directed
+          a(href='/api/movies/'+ movie) #{movie}
+          br
+
+    
+    if(person.acted)
+      p 
+        |Acted:
+        br
+        for movie in person.acted
+          a(href='/api/movies/'+ 'The Ballad of Cable Hogue') #{movie}
+          br
